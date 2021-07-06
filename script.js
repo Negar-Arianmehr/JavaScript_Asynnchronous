@@ -2,7 +2,6 @@
 
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
-
 ///////////////////////////////////////
 //get country
 const getCountryData = function(country) {
@@ -16,12 +15,10 @@ const getCountryData = function(country) {
   request.addEventListener('load', function() {
     //it is a JSON , the big string of text
     console.log(this.responseText);
-
     //convert JSON to JS
     //with putting [] we destructure the array we have object
     const [data] = JSON.parse(this.responseText);
     console.log(data);
-
     //here we want to make a cart in the html
     const html =
       `<article class='country'>
@@ -46,7 +43,6 @@ const getCountryData = function(country) {
 ///////////////////////////////////////
 //get neighbour of country
 ///////////////////////////////////////
-
 ///////////////////////////////////////
 //get country
 const renderCountry = function(data, className= "") {
@@ -121,5 +117,4 @@ const getCountryAndNeighbour = function(country) {
     });
   });
 };
-
 getCountryAndNeighbour('iran');
