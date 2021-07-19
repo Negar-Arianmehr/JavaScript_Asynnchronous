@@ -62,7 +62,6 @@ const renderCountry = function(data, className= "") {
   //where have to put this html
   countriesContainer.insertAdjacentHTML('beforeend', html);
   countriesContainer.style.opacity = 1;
-
 };
 
 const getCountryAndNeighbour = function(country) {
@@ -82,15 +81,14 @@ const getCountryAndNeighbour = function(country) {
     console.log(this.responseText);
     //convert JSON to JS
     //with putting [] we destructure the array we have object
-
     const [data] = JSON.parse(this.responseText);
+
     // if (!data) return;
     console.log(data);
     //********************
     //Render country 1
     //********************
     renderCountry(data);
-
     //********************
     //Get neighbour- country2
     //********************
@@ -117,4 +115,5 @@ const getCountryAndNeighbour = function(country) {
     });
   });
 };
-getCountryAndNeighbour('iran');
+// getCountryAndNeighbour('iran');
+getCountryAndNeighbour('Afghanistan');
