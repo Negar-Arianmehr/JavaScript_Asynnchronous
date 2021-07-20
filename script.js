@@ -117,3 +117,8 @@ const getCountryAndNeighbour = function(country) {
 };
 // getCountryAndNeighbour('iran');
 getCountryAndNeighbour('Afghanistan');
+
+////////////////////////////////////////////////////////////////////////////
+//Promise
+const request3 = fetch(`https://restcountries.eu/rest/v2/name/iran}`)
+console.log(request3);
