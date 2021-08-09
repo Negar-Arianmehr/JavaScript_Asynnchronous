@@ -11,3 +11,4 @@ For get info from respose we need JASON method. Jason is a method that is availa
 So it's very easy to understand that this fetches something and then we get a response which will be transformed to json. And then we take that data and render the country to the DOM.
 
 
+
