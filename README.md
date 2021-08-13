@@ -27,3 +27,4 @@ Finally() method:
 Then method is called when the promise is fulfilled while catch() method is only called when the promise is rejected, and the finally() method is used for sometimes that always needs to happen no matter the result of the promise.
 
 
+
