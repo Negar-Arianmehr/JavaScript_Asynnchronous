@@ -26,7 +26,7 @@ There are some ways to handeling rejections.
 Finally() method:
 Then method is called when the promise is fulfilled while catch() method is only called when the promise is rejected, and the finally() method is used for sometimes that always needs to happen no matter the result of the promise.
 
-#Asynchronous behind the scence:
+# Asynchronous behind the scence:
 A JS runtime is basically a container. The heart of every JS runtime is the engine. JS has only one thread of execution and so it can only do one thing at a time. There is absolutely no multitasking happening in JS itself. Other launguge can do that but not JS. We have **call stack** and **heap**. Next we have the web APIs environment. These are some APIs provided to the engine but which are actually not part of the JS language itself. Next up, there is the **callback queue** and this is a data structure thar holds all the ready to be executed callback function that are attached to some event that has occurred. 
 Event loop is pice that makes asynchronous behavior possible in JS. It is the resean why we can have non blocking concurrency model in JS. A concurrency model is simply how a language handles multiple things happening at the same time. Each time the **event loop** takes a callback from the callback queue, we say that there was an event loop tick. The event loop is who decides exactlly when each callback is executed. We can also say that the event loop does the orchestration of this entire JavaScript runtime.
 Callback queue for promises have the special callback queue for themselves, which is the so called **microtasks queue** that it basically has priority over the callback queue. The event loop gives microtasks priority over regular callbacks.
