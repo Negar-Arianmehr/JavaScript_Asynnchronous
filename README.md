@@ -58,6 +58,7 @@ For it we use the Promise.all combinator function. all is kind of a helper funct
 If one promise reject is enough for the entire thing to reject as well. So when we are in the situation we have some multiple asynchronous operations at the same time and operations dont depend on one another, we should always run them parallel.
 
 **Other Promise combinators: race, allSettled and any**
+
 Promise.race : Just like other combinators recives an array of promises and it also returns a promise.
 It is settled as soon as one of the input promises settles. Settled means a value is available, but it doesnt matter if the promise got rejected or fulfilled. ans so in Promise.race basically the first settled promise wins the race. So we only get one result not an array of the result of all of array.
 In the code for this part we write IIFE so we could use async await without creating a whole new function with a name.
