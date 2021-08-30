@@ -33,7 +33,7 @@ Callback queue for promises have the special callback queue for themselves, whic
 **Which codes will be executed sooner?**
 At first, Code outside of any callback, will run first and They are synchronous. It doesnt matter where they are. Ater that the macrotask queue is executed and last one will be a callback queue. If doesnt matter that you have setTimeOut even in 0, if it is callback queue, it will be happened after micro-task queue.
 **new Promise(function(resolve, reject) ...)** is essentially just a special kind of object in JS. Now the promise constructor takes exactly one argument and that is the so-called **executor function**. Like the fetch fuction it also makes a new promise.
-Calling the resolve function will Mark this promise as a fulfilled promise, and reject function is the error.
+Calling the resolve function will Mark this promise as a fulfilled promise(resolve automatically creates a promise that is resolved.), and reject function is the error.
 
 **Promisifying** means to convert callback based asynchronous behavior to promise based. So creating a function and then from there returning a promise, it is that we want to do. It will encapsulate the asynchronous operation even further. So essentially that's also what the fetch function does.
 Promise. resolve() and promise,reject() are for happening immediately.
@@ -61,6 +61,9 @@ If one promise reject is enough for the entire thing to reject as well. So when 
 Promise.race : Just like other combinators recives an array of promises and it also returns a promise.
 It is settled as soon as one of the input promises settles. Settled means a value is available, but it doesnt matter if the promise got rejected or fulfilled. ans so in Promise.race basically the first settled promise wins the race. So we only get one result not an array of the result of all of array.
 In the code for this part we write IIFE so we could use async await without creating a whole new function with a name.
+Promise.allSettled: is new one , it is from ES2020 and it is actually a very simple one. It takes an array of promises and simply return an array of all the settled promises. It is similar to Promise.al in rigard that it also returns an array of all the results, But the different is that Promise.all will short circuit as soon as one promise rejects but Promise.allSettled, simply never short circuits. It will return all the results of all Promises(even reject("error). But allPromise combinator will short circuit if there is one error, if there is one rejected promise.
+Promise.any: It is too modern, It is ES2021. So as always Promise.any takes in an array of multiple promises and this one will then return the first fullfilled promise and it ill simply igore rejected promises. It is siilar to Promise.race with the difference that rejected promises are ignored. So the resoult of Prmise.any is always going to be a fulfilled promise unless all of them reject.
+But the Promise.all and Promise.race are important ones of all of them.
 
 
 
