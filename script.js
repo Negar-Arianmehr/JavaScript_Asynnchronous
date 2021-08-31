@@ -212,9 +212,9 @@ const getCountryData2 = function(country) {
   });
 };
 
-// btn.addEventListener('click', function() {
-//   getCountryData2('Iran');
-// });
+btn.addEventListener('click', function() {
+  getCountryData2('Iran');
+});
 // getCountryData2('fdsfg');
 
 //Challenge
