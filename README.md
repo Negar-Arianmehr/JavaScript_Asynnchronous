@@ -33,21 +33,22 @@ Callback queue for promises have the special callback queue for themselves, whic
 **Which codes will be executed sooner?**
 At first, Code outside of any callback, will run first and They are synchronous. It doesnt matter where they are. Ater that the macrotask queue is executed and last one will be a callback queue. If doesnt matter that you have setTimeOut even in 0, if it is callback queue, it will be happened after micro-task queue.
 **new Promise(function(resolve, reject) ...)** is essentially just a special kind of object in JS. Now the promise constructor takes exactly one argument and that is the so-called **executor function**. Like the fetch fuction it also makes a new promise.
-Calling the resolve function will Mark this promise as a fulfilled promise, and reject function is the error.
+Calling the resolve function will Mark this promise as a fulfilled promise(resolve automatically creates a promise that is resolved.), and reject function is the error.
 
-**Promisifying** means to convert callback based asynchronous behavior to promise based. So creating a function and then from there returning a promise, it is that we want to do. It will encapsulate the asynchronous operation even further. So essentially that's also what the fetch function does.
+# Promisifying 
+Promisifying means to convert callback based asynchronous behavior to promise based. So creating a function and then from there returning a promise, it is that we want to do. It will encapsulate the asynchronous operation even further. So essentially that's also what the fetch function does.
 Promise. resolve() and promise,reject() are for happening immediately.
 This is how we can built our own promisesand how we promisify a very simple callback based asynchronous behavior function such as set timeout.
 
 **onsuming a Promises with Async/await** : 
-There is now an even better and easier way to consume Promises, which is called async await. We start with creating a function which is called aaync function(async function()). So this function is an asynchronous function, the function that will basically keep running in the background while performing the code that inside of it. Then when this function is done, it automatically return a Promise. Inside the async function we can have ine or more await statements. After await we can use the promise returned from the fetch() function. The fetch function return a promise and so in an async function, we can use the await keyword to basically await for the result of this Promise. So basically await will stop decode execution at this point of the function until the promise is fulfilled,for instance untill the data has been fetched.
+There is now an even better and easier way to consume Promises, which is called async await. We start with creating a function which is called async function(async function() that is a arrow function so we have an implicit return and always return a Promise not the value. So the value that wwe want to return is going to be the fulfilled value of Promise that the async function returns.). So this function is an asynchronous function, the function that will basically keep running in the background while performing the code that inside of it. Then when this function is done, it automatically return a Promise. Inside the async function we can have ine or more await statements. After await we can use the promise returned from the fetch() function. The fetch function return a promise and so in an async function, we can use the await keyword to basically await for the result of this Promise. So basically await will stop decode execution at this point of the function until the promise is fulfilled,for instance untill the data has been fetched.
 
 **Isn't stopping the code, blocking the execution?** : No, Because stopping execution in an async function is not a problem, this is running sdyncronously in the background. So it is not blocking the call stack. That is the so special thing about a single wait.
 It is the fact that it makes our code look like regular syncronous code while behind the scenes everything is in fact asyncronous. When we want the value from server we can assign that to a variable meant that is something that was impossible before. So before we had to mess with callback functions and dead was true in callback hell, but also by consuming premises with the then method. But now with a sync await, that is just completely gone.It is like normal synchronous code now, with assign a value in variable. The async/await simply syntactic sugar over the then method in premises. Behind the scense we are using promises. A sync await is just synthetic sugar over comsuming promisies. It is like classes that hide what happen behide the scenes.
 
 **Error Handling with try...catch**
 It is in the JS language from beggining. In this way we dont have the script that die, but we handle it.
-try {} catch () {} : try block ...in the catch block we can handle any error like catch method.
+try {} catch ()(In new version of JS for catch we dont need ()=> catch {} ) {} : try block ...in the catch block we can handle any error like catch method.
 
 **Returning Values From Async Function** 
 We return it with IIFE , and in it, try...catch statment and put it as a value to const variable with using async/await and use it.
@@ -58,9 +59,15 @@ For it we use the Promise.all combinator function. all is kind of a helper funct
 If one promise reject is enough for the entire thing to reject as well. So when we are in the situation we have some multiple asynchronous operations at the same time and operations dont depend on one another, we should always run them parallel.
 
 **Other Promise combinators: race, allSettled and any**
+
 Promise.race : Just like other combinators recives an array of promises and it also returns a promise.
 It is settled as soon as one of the input promises settles. Settled means a value is available, but it doesnt matter if the promise got rejected or fulfilled. ans so in Promise.race basically the first settled promise wins the race. So we only get one result not an array of the result of all of array.
 In the code for this part we write IIFE so we could use async await without creating a whole new function with a name.
+Promise.allSettled: is new one , it is from ES2020 and it is actually a very simple one. It takes an array of promises and simply return an array of all the settled promises. It is similar to Promise.al in rigard that it also returns an array of all the results, But the different is that Promise.all will short circuit as soon as one promise rejects but Promise.allSettled, simply never short circuits. It will return all the results of all Promises(even reject("error). But allPromise combinator will short circuit if there is one error, if there is one rejected promise.
+Promise.any: It is too modern, It is ES2021. So as always Promise.any takes in an array of multiple promises and this one will then return the first fullfilled promise and it ill simply igore rejected promises. It is siilar to Promise.race with the difference that rejected promises are ignored. So the resoult of Prmise.any is always going to be a fulfilled promise unless all of them reject.
+But the Promise.all and Promise.race are important ones of all of them.
+
+**Promise.all** is also used when we want to get value from await array . When we use await an map for array, result will be PRomise, So for solve it, we use the Promise.all to get value of Promise in an array.
 
 
 
